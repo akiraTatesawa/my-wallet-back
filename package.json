@@ -1,0 +1,38 @@
+{
+  "name": "my-wallet-back",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Back-end of the My Wallet project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akiraTatesawa/my-wallet.git"
+  },
+  "author": "Arthur Akira Tatesawa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akiraTatesawa/my-wallet/issues"
+  },
+  "homepage": "https://github.com/akiraTatesawa/my-wallet#readme",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "joi": "^17.6.0",
+    "mongodb": "^4.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.1.0",
+    "nodemon": "^2.0.18",
+    "prettier": "^2.7.1"
+  }
+}
