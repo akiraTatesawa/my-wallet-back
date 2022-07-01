@@ -7,17 +7,17 @@ import { db } from "../database.js";
 import { loginUserSchema, userSchema } from "../schemas/userSchema.js";
 
 export async function validateLogin(req, res, next) {
-  const user = {
-    ...req.body,
-    email: req.body.email.trim(),
-  };
-
-  const { error } = loginUserSchema.validate(user);
+  const { error } = loginUserSchema.validate(req.body);
 
   if (error) {
     console.log(error.details);
     return res.sendStatus(422);
   }
+
+  const user = {
+    ...req.body,
+    email: req.body.email.trim(),
+  };
 
   try {
     const registeredUser = await db
@@ -44,6 +44,13 @@ export async function validateLogin(req, res, next) {
 }
 
 export async function validateSignUp(req, res, next) {
+  const { error } = userSchema.validate(req.body);
+
+  if (error) {
+    console.log(error.details);
+    return res.sendStatus(422);
+  }
+
   const newUser = {
     ...req.body,
     name: stripHtml(req.body.name).result.trim(),
@@ -51,12 +58,6 @@ export async function validateSignUp(req, res, next) {
     password: req.body.password,
   };
 
-  const { error } = userSchema.validate(newUser);
-
-  if (error) {
-    console.log(error.details);
-    return res.sendStatus(422);
-  }
   try {
     const isEmailInUse = await db
       .collection("users")
