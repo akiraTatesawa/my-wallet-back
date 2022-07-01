@@ -1,7 +1,8 @@
 import { Router } from "express";
-// eslint-disable-next-line import/no-unresolved
-import { postSignUp } from "../controllers/signUpController.js";
+
+import { postSignUp } from "../controllers/authController.js";
+import { validateSignUp } from "../middlewares/userValidationMiddleware.js";
 
 export const signUpRoute = Router();
 
-signUpRoute.post("/sign-up", postSignUp);
+signUpRoute.post("/sign-up", validateSignUp, postSignUp);
