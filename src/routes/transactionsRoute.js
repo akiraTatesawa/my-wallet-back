@@ -1,6 +1,10 @@
 import { Router } from "express";
 
-import { postTransaction } from "../controllers/transactionsController.js";
+import {
+  getTransactions,
+  postTransaction,
+} from "../controllers/transactionsController.js";
+
 import { validateToken } from "../middlewares/tokenValidationMiddleware.js";
 import { validateTransaction } from "../middlewares/transactionValidationMiddleware.js";
 
@@ -12,3 +16,4 @@ transactionsRoute.post(
   validateTransaction,
   postTransaction
 );
+transactionsRoute.get("/transactions", validateToken, getTransactions);

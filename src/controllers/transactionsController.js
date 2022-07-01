@@ -40,3 +40,18 @@ export async function postTransaction(_req, res) {
     return res.sendStatus(500);
   }
 }
+
+export async function getTransactions(_req, res) {
+  const { session } = res.locals;
+
+  try {
+    const userTransactions = await db
+      .collection("transactions")
+      .findOne({ userId: session.userId });
+
+    return res.status(200).send(userTransactions.transactionsHistory);
+  } catch (err) {
+    console.log(err);
+    return res.sendStatus(500);
+  }
+}

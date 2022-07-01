@@ -7,7 +7,7 @@ export async function validateToken(req, res, next) {
   const token = authorization?.replace(/Bearer /, "");
 
   if (!token) {
-    console.log(chalk.red("Must send a token!"));
+    console.log(chalk.red("\nMust send a token!"));
     return res.sendStatus(422);
   }
 
