@@ -1,14 +1,12 @@
+import "./config.js";
 import express from "express";
 import cors from "cors";
 import chalk from "chalk";
-import dotenv from "dotenv";
 
 import { signUpRoute } from "./routes/signUpRoute.js";
 import { signInRoute } from "./routes/signInRoute.js";
 import { transactionsRoute } from "./routes/transactionsRoute.js";
 import { signOutRoute } from "./routes/signOutRoute.js";
-
-dotenv.config();
 
 const app = express();
 
@@ -21,5 +19,9 @@ app.use(transactionsRoute);
 app.use(signOutRoute);
 
 app.listen(process.env.PORT || 5000, () => {
-  console.log(chalk.bgGreen.black.bold("\nServer running on port 5000..."));
+  console.log(
+    chalk.bgGreen.black.bold(
+      `\nServer running on port ${process.env.PORT || "5000"}...`
+    )
+  );
 });
