@@ -55,7 +55,7 @@ export async function postSignUp(req, res) {
 
     console.log(
       chalk.green(
-        `User ${chalk.green.bold(newUser.name)} registered successfully`
+        `\nUser ${chalk.green.bold(newUser.name)} registered successfully`
       )
     );
 

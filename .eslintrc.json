@@ -25,7 +25,8 @@
         "prettier/prettier": "error",
         "import/prefer-default-export": "off",
         "no-console": "off",
-        "no-underscore-dangle": "off"
+        "no-underscore-dangle": "off",
+        "no-useless-escape": "off"
     },
     "settings": {
         "import/resolver": {

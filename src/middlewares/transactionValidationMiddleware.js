@@ -3,7 +3,6 @@ import { stripHtml } from "string-strip-html";
 import { transactionSchema } from "../schemas/transactionsSchema.js";
 
 export function validateTransaction(req, res, next) {
-  // check if req.body follows the rules
   const { error } = transactionSchema.validate(req.body);
 
   if (error) {
@@ -13,6 +12,7 @@ export function validateTransaction(req, res, next) {
 
   const transaction = {
     ...req.body,
+    value: req.body.value.replace(".", ""),
     description: stripHtml(req.body.description).result.trim(),
   };
 
