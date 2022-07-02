@@ -46,8 +46,7 @@ export async function validateLogin(req, res, next) {
 export async function validateSignUp(req, res, next) {
   const { error } = userSchema.validate(req.body);
 
-  if (error) {
-    console.log(error.details);
+  if (error || stripHtml(req.body.name).result.trim().length === 0) {
     return res.sendStatus(422);
   }
 
