@@ -65,3 +65,15 @@ export async function postSignUp(req, res) {
     return res.sendStatus(500);
   }
 }
+
+export async function signOut(_req, res) {
+  const { session } = res.locals;
+
+  try {
+    await db.collection("sessions").deleteOne({ userId: session.userId });
+
+    return res.sendStatus(200);
+  } catch (err) {
+    return res.sendStatus(500);
+  }
+}
