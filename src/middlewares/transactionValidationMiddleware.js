@@ -29,3 +29,14 @@ export function validateTransaction(req, res, next) {
   res.locals.transaction = transaction;
   return next();
 }
+
+export function validateTransactionId(req, res, next) {
+  const { idTransaction } = req.params;
+
+  if (!idTransaction) {
+    return res.status(422).send("Must send an id");
+  }
+
+  res.locals.idTransaction = idTransaction;
+  return next();
+}

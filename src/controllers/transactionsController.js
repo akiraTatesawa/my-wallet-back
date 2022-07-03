@@ -55,3 +55,27 @@ export async function getTransactions(_req, res) {
     return res.sendStatus(500);
   }
 }
+
+export async function deleteTransaction(_req, res) {
+  const { session, idTransaction } = res.locals;
+
+  try {
+    const deleted = await db.collection("transactions").updateOne(
+      { userId: session.userId },
+      {
+        $pull: {
+          transactionsHistory: { id: new ObjectId(idTransaction) },
+        },
+      }
+    );
+
+    if (deleted.modifiedCount === 0) {
+      return res.status(404).send("Transaction not found");
+    }
+
+    return res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    return res.sendStatus(500);
+  }
+}
