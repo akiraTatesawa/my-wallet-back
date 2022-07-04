@@ -47,6 +47,7 @@ export async function validateSignUp(req, res, next) {
   const { error } = userSchema.validate(req.body);
 
   if (error || stripHtml(req.body.name).result.trim().length === 0) {
+    console.log(error?.details || "Blank name");
     return res.sendStatus(422);
   }
 
